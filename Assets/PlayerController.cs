@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
         // Initialize player states
         isGrounded = false;
         isHearted = false;
-        isJump = true;
+        isJump = false;
         isFast = false;
         isSlow = false;
         rb = GetComponent<Rigidbody2D>();
@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
         if (isFast)
             xSpeed = 30f;
         else if (isSlow)
-            xSpeed = 3.75f;
+            xSpeed = 2f;
         else
             xSpeed = 7.5f;
 

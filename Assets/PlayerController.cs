@@ -4,16 +4,14 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    // Player states
     public bool isGrounded;
     public bool isHearted;
     public bool isJump;
     public bool isFast;
     public bool isSlow;
-
+    public bool isIce;
     public Rigidbody2D rb;
 
-    // Player movement variables
     public float xSpeed = 7.5f;
     public float bounciness = 0.0f;
     public float jumpStrength = 5f;
@@ -21,15 +19,14 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        // Initialize player states
         isGrounded = false;
         isHearted = false;
         isJump = false;
         isFast = false;
         isSlow = false;
+        isIce = false;
         rb = GetComponent<Rigidbody2D>();
 
-        // Check if Rigidbody2D is attached
         if (rb == null)
         {
             Debug.LogError("Rigidbody2D component is missing from this GameObject!");
@@ -38,22 +35,30 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        // Adjust speed based on player state
-        if (isFast)
-            xSpeed = 30f;
-        else if (isSlow)
-            xSpeed = 2f;
-        else
+        if (isIce)
+        {
+            isFast = false;
+            isSlow = false;
             xSpeed = 7.5f;
+        }
+        else if (isFast)
+        {
+            xSpeed = 20f;
+        }
+        else if (isSlow)
+        {
+            xSpeed = 2f;
+        }
+        else
+        {
+            xSpeed = 7.5f;
+        }
 
-        // Adjust bounciness if on ice
-        // Handle movement (left/right)
         float moveInput = Input.GetAxis("Horizontal");
         rb.linearVelocity = new Vector2(moveInput * xSpeed, rb.linearVelocity.y);
-        rb.linearVelocity *= (1 - bounciness);  // Apply bounciness to movement
+        rb.linearVelocity *= (1 - bounciness);
         Debug.Log("Player moving with velocity: " + rb.linearVelocity);
 
-        // Flip gravity when pressing 'W' if grounded
         if (Input.GetKeyDown(KeyCode.W) && isGrounded)
         {
             rb.gravityScale *= -1;
@@ -61,14 +66,12 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Gravity flipped. New gravity scale: " + rb.gravityScale);
         }
 
-        // Temporary gravity flip when pressing 'S' if can jump
         if (isJump && Input.GetKeyDown(KeyCode.S))
         {
             StartCoroutine(DelayAction(0.75f));
         }
     }
 
-    // Coroutine to temporarily flip gravity
     IEnumerator DelayAction(float delayTime)
     {
         rb.gravityScale *= -1;
@@ -79,7 +82,6 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Gravity restored");
     }
 
-    // Handle collisions
     void OnCollisionEnter2D(Collision2D col)
     {
         Debug.Log("Collided with: " + col.gameObject.tag);
@@ -99,6 +101,12 @@ public class PlayerController : MonoBehaviour
             case "Heart":
                 isHearted = true;
                 Debug.Log("Heart collected. Extra life granted.");
+                break;
+
+            case "ice":
+                isIce = true;
+                isFast = false;
+                isSlow = false;
                 break;
 
             case "Enemy":
@@ -136,7 +144,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // Teleport to random location when entering Portal
     void TeleportPlayer()
     {
         rand1 = Random.Range(1, 6);
@@ -153,7 +160,6 @@ public class PlayerController : MonoBehaviour
         transform.position = positions[rand1 - 1];
     }
 
-    // Teleport to random location when entering Portal1
     void TeleportPlayer1()
     {
         rand2 = Random.Range(1, 6);
@@ -165,22 +171,20 @@ public class PlayerController : MonoBehaviour
             new Vector3(-361.1f,-163.1f,0),
             new Vector3(-36f,-169.7f,0),
             new Vector3(294f,-174f,0),
-            new Vector3(654.5f,-174.2f,0),
+            new Vector3(654.5f,-174.2f,0)
         };
         transform.position = positions[rand2 - 1];
     }
 
-    // Reset player state after teleportation
     void ResetPlayerState()
     {
         isJump = false;
         isFast = false;
         isSlow = false;
+        isIce = false;
         rb.gravityScale = 1;
-
     }
 
-    // Coroutine to reload the scene after a delay
     IEnumerator ReloadScene()
     {
         yield return new WaitForSeconds(0.5f);

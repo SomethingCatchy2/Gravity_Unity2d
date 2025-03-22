@@ -1,20 +1,30 @@
-
 using UnityEngine;
 
+// This class makes an object follow a target on the x-axis only
 public class Follow : MonoBehaviour
 {
-    public GameObject target; // Assign the object to follow in the inspector
-    public float speed = 5f;  // Speed at which the enemy moves
+    // Reference to the GameObject that this object should follow
+    public GameObject target; 
 
+    // Movement speed in units per second
+    public float speed = 5f;  
+
+    // Update is called once per frame
     void Update()
     {
+        // Only proceed if we have a valid target
         if (target != null)
         {
-            // Get current and target positions
+            // Store the current position of this object
             Vector2 currentPosition = transform.position;
+
+            // Create target position with same Y but target's X coordinate
+            // This ensures movement only happens on X axis
             Vector2 targetPosition = new Vector2(target.transform.position.x, currentPosition.y);
             
-            // Move towards the target position at the given speed
+            // Smoothly move towards the target position
+            // MoveTowards ensures consistent movement speed regardless of distance
+            // Time.deltaTime makes movement frame-rate independent
             transform.position = Vector2.MoveTowards(currentPosition, targetPosition, speed * Time.deltaTime);
         }
     }

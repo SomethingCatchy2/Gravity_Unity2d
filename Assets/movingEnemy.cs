@@ -5,77 +5,54 @@ using UnityEngine.SceneManagement;
 
 public class movingEnemy : MonoBehaviour
 {
+    // Flag to check if the enemy is touching the ground
     private bool isGrounded;
+    // Reference to the Rigidbody2D component
     private Rigidbody2D rb;
-    // OPTIONAL: include if you want to limit x velocity
+    // Transform reference (unused currently)
     private Transform whereGo;
+    // Vector3 for movement changes (unused currently)
     private Vector3 change;
-// public static float Range(float, float);
 
+    // Maximum velocity in X direction (unused currently)
     private float maxVelX = 10;
 
+    // Movement speed in X direction
     public float xSpeed;
+    // Jump force strength
     public float jumpStrength;
+    // Random value variable
     public float rand1;
-    
-    
-        void Start()
+
+    void Start()
     {
+        // Initialize variables
         isGrounded = false;
         rb = GetComponent<Rigidbody2D>();
     }
 
     void FixedUpdate()
     {
-
-     
-        if (isGrounded==true) {
-            rb.gravityScale = rb.gravityScale *-1f;
-        isGrounded = false;
-       
+        // If enemy touches ground, reverse gravity and reset grounded state
+        if (isGrounded == true)
+        {
+            rb.gravityScale = rb.gravityScale * -1f;
+            isGrounded = false;
         }
-
-       
     }
-
 
     void OnCollisionEnter2D(Collision2D col)
     {
-                if(col.gameObject.tag == "Ground"){
-        isGrounded = true;
+        // Set isGrounded to true when colliding with objects tagged as "Ground"
+        if (col.gameObject.tag == "Ground")
+        {
+            isGrounded = true;
         }
 
-                        if(col.gameObject.tag == "Player"){
-        isGrounded = true;
+        // Set isGrounded to true when colliding with objects tagged as "Player"
+        if (col.gameObject.tag == "Player")
+        {
+            isGrounded = true;
         }
-
-
-
-
-
-
-
     }
-
-   }
-    
-//        void Start()
-//     {
-//         isGrounded = false;
-//         rb = GetComponent<Rigidbody2D>();
-//     }
-    
-    
-//         void FixedUpdate(){
-//         if (isGrounded==true) {
-//             rb.gravityScale = rb.gravityScale *-1;
-//         isGrounded = false;
-// }
-// }
-//     void OnCollisionEnter2D(Collision2D col)
-
-//            if(col.gameObject.tag == "Ground"){
-//         isGrounded = true;
-//         }
-    
-
+}

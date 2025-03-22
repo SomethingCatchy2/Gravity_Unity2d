@@ -2,29 +2,37 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Controls the player character's movement, abilities, and interactions
+/// </summary>
 public class PlayerController : MonoBehaviour
 {
-    public bool isGrounded;
-    public bool isHearted;
-    public bool isJump;
-    public bool isFast;
-    public bool isSlow;
-    public bool isIce;
-    public Rigidbody2D rb;
+    // State flags for player conditions
+    public bool isGrounded;    // Indicates if player is touching ground
+    public bool isHearted;     // Indicates if player has heart protection
+    public bool isJump;        // Indicates if special jump is available
+    public bool isFast;        // Indicates if speed boost is active
+    public bool isSlow;        // Indicates if speed reduction is active
+    public bool isIce;         // Indicates if on ice surface
+    public Rigidbody2D rb;     // Reference to the player's Rigidbody2D component
 
-    public float xSpeed = 7.5f;
-    public float bounciness = 0.0f;
-    public float jumpStrength = 5f;
-    private int rand1, rand2;
+    // Movement and physics parameters
+    public float xSpeed = 7.5f;        // Base horizontal movement speed
+    public float bounciness = 0.0f;    // Bounce factor
+    public float jumpStrength = 5f;    // Jump force strength
+    private int rand1, rand2;          // Random values for portal teleportation
 
     void Start()
     {
+        // Initialize all state flags to false
         isGrounded = false;
         isHearted = false;
         isJump = false;
         isFast = false;
         isSlow = false;
         isIce = false;
+        
+        // Get reference to the Rigidbody2D component
         rb = GetComponent<Rigidbody2D>();
 
         if (rb == null)
@@ -35,6 +43,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        // Handle speed modifications based on power-ups
         if (isIce)
         {
             isFast = false;
@@ -54,11 +63,13 @@ public class PlayerController : MonoBehaviour
             xSpeed = 7.5f;
         }
 
+        // Handle horizontal movement
         float moveInput = Input.GetAxis("Horizontal");
         rb.linearVelocity = new Vector2(moveInput * xSpeed, rb.linearVelocity.y);
         rb.linearVelocity *= (1 - bounciness);
         Debug.Log("Player moving with velocity: " + rb.linearVelocity);
 
+        // Handle gravity flip with W key
         if (Input.GetKeyDown(KeyCode.W) && isGrounded)
         {
             rb.gravityScale *= -1;
@@ -66,12 +77,16 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Gravity flipped. New gravity scale: " + rb.gravityScale);
         }
 
+        // Handle temporary gravity flip with S key
         if (isJump && Input.GetKeyDown(KeyCode.S))
         {
             StartCoroutine(DelayAction(0.75f));
         }
     }
 
+    /// <summary>
+    /// Temporarily flips gravity for a specified duration
+    /// </summary>
     IEnumerator DelayAction(float delayTime)
     {
         rb.gravityScale *= -1;
@@ -82,6 +97,9 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Gravity restored");
     }
 
+    /// <summary>
+    /// Handles all collision events with tagged objects
+    /// </summary>
     void OnCollisionEnter2D(Collision2D col)
     {
         Debug.Log("Collided with: " + col.gameObject.tag);
@@ -144,6 +162,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Teleports player to random location using first portal system
+    /// </summary>
     void TeleportPlayer()
     {
         rand1 = Random.Range(1, 6);
@@ -160,6 +181,9 @@ public class PlayerController : MonoBehaviour
         transform.position = positions[rand1 - 1];
     }
 
+    /// <summary>
+    /// Teleports player to random location using second portal system
+    /// </summary>
     void TeleportPlayer1()
     {
         rand2 = Random.Range(1, 6);
@@ -176,6 +200,9 @@ public class PlayerController : MonoBehaviour
         transform.position = positions[rand2 - 1];
     }
 
+    /// <summary>
+    /// Resets all player state flags and gravity
+    /// </summary>
     void ResetPlayerState()
     {
         isJump = false;
@@ -185,6 +212,9 @@ public class PlayerController : MonoBehaviour
         rb.gravityScale = 1;
     }
 
+    /// <summary>
+    /// Reloads the current scene after a short delay
+    /// </summary>
     IEnumerator ReloadScene()
     {
         yield return new WaitForSeconds(0.5f);

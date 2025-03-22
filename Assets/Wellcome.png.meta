@@ -1,34 +1,28 @@
 fileFormatVersion: 2
-guid: 20ec896429abbd949af720543a50b723
+guid: 83382c8489d66cf078ac238738e46a1a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5931842347579807508
-    second: New Piskel-1.png_0
+      213: -6470564932266014424
+    second: Wellcome_0
   - first:
-      213: 6837126915485482293
-    second: New Piskel-1.png_1
+      213: -1524128978357208318
+    second: Wellcome_1
   - first:
-      213: 2435636059595699315
-    second: New Piskel-1.png_2
+      213: -1963633788506606511
+    second: Wellcome_2
   - first:
-      213: -5974945345809412475
-    second: New Piskel-1.png_3
+      213: 1595468753527808259
+    second: Wellcome_3
   - first:
-      213: 2224300187668699664
-    second: New Piskel-1.png_4
+      213: -7041985904114690197
+    second: Wellcome_4
   - first:
-      213: 6967386063605401298
-    second: New Piskel-1.png_5
+      213: -1629669654751525854
+    second: Wellcome_5
   - first:
-      213: -30817383775939028
-    second: New Piskel-1.png_6
-  - first:
-      213: 5749274687971464000
-    second: New Piskel-1.png_7
-  - first:
-      213: -6588394615312561063
-    second: New Piskel-1.png_8
+      213: -5636953991877863250
+    second: Wellcome_6
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -61,7 +55,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -75,7 +69,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -99,7 +93,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -120,30 +114,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: New Piskel-1.png_0
+      name: Wellcome_0
       rect:
         serializedVersion: 2
-        x: 2
-        y: 22
-        width: 12
-        height: 9
+        x: 0
+        y: 68
+        width: 25
+        height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,19 +133,107 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4171d17df23225250800000000000000
-      internalID: 5931842347579807508
+      spriteID: 8294f240a7fe336a0800000000000000
+      internalID: -6470564932266014424
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: New Piskel-1.png_1
+      name: Wellcome_1
       rect:
         serializedVersion: 2
-        x: 2
-        y: 8
-        width: 8
+        x: 29
+        y: 68
+        width: 14
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20bb325f4c439dae0800000000000000
+      internalID: -1524128978357208318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wellcome_2
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 65
+        width: 14
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 154fb1f1975cfb4e0800000000000000
+      internalID: -1963633788506606511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wellcome_3
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 65
+        width: 23
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 301a240d06e342610800000000000000
+      internalID: 1595468753527808259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wellcome_4
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 2
+        width: 20
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b679fe75127d54e90800000000000000
+      internalID: -7041985904114690197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wellcome_5
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 32
+        width: 14
         height: 14
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -174,20 +243,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 53d36c974ba52ee50800000000000000
-      internalID: 6837126915485482293
+      spriteID: 2244d4755104269e0800000000000000
+      internalID: -1629669654751525854
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: New Piskel-1.png_2
+      name: Wellcome_6
       rect:
         serializedVersion: 2
-        x: 14
-        y: 22
-        width: 10
-        height: 9
+        x: 44
+        y: 29
+        width: 50
+        height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -196,140 +265,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3747556771e1dc120800000000000000
-      internalID: 2435636059595699315
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: New Piskel-1.png_3
-      rect:
-        serializedVersion: 2
-        x: 15
-        y: 9
-        width: 7
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 58e08a65ddab41da0800000000000000
-      internalID: -5974945345809412475
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: New Piskel-1.png_4
-      rect:
-        serializedVersion: 2
-        x: 22
-        y: 9
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 01ad3df5c3d4ede10800000000000000
-      internalID: 2224300187668699664
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: New Piskel-1.png_5
-      rect:
-        serializedVersion: 2
-        x: 25
-        y: 0
-        width: 7
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2d60536c5b021b060800000000000000
-      internalID: 6967386063605401298
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: New Piskel-1.png_6
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 9
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c26d023b0c3829ff0800000000000000
-      internalID: -30817383775939028
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: New Piskel-1.png_7
-      rect:
-        serializedVersion: 2
-        x: 9
-        y: 0
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0431fa42ed689cf40800000000000000
-      internalID: 5749274687971464000
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: New Piskel-1.png_8
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 0
-        width: 10
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 95cc23211025194a0800000000000000
-      internalID: -6588394615312561063
+      spriteID: ea856e2d53485c1b0800000000000000
+      internalID: -5636953991877863250
       vertices: []
       indices: 
       edges: []
@@ -348,15 +285,13 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      New Piskel-1.png_0: 5931842347579807508
-      New Piskel-1.png_1: 6837126915485482293
-      New Piskel-1.png_2: 2435636059595699315
-      New Piskel-1.png_3: -5974945345809412475
-      New Piskel-1.png_4: 2224300187668699664
-      New Piskel-1.png_5: 6967386063605401298
-      New Piskel-1.png_6: -30817383775939028
-      New Piskel-1.png_7: 5749274687971464000
-      New Piskel-1.png_8: -6588394615312561063
+      Wellcome_0: -6470564932266014424
+      Wellcome_1: -1524128978357208318
+      Wellcome_2: -1963633788506606511
+      Wellcome_3: 1595468753527808259
+      Wellcome_4: -7041985904114690197
+      Wellcome_5: -1629669654751525854
+      Wellcome_6: -5636953991877863250
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

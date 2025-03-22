@@ -5,49 +5,62 @@ using UnityEngine.SceneManagement;
 
 public class fast : MonoBehaviour
 {
+    // Indicates whether the object is on the ground.
     private bool isGrounded;
+
+    // Reference to the Rigidbody2D component for applying physics-based forces.
     private Rigidbody2D rb;
-    // OPTIONAL: include if you want to limit x velocity
+
+    // Optional: Reference to a Transform if you want to determine a target direction.
     private Transform whereGo;
+
+    // Vector used for computing changes in direction or movement.
     private Vector3 change;
-// public static float Range(float, float);
-public int shew = 0; 
+
+    // State variable to determine movement direction.
+    public int shew = 0; 
+
+    // Maximum velocity in the X axis (not currently used).
     private float maxVelX = 10;
- public float PlayerSpeed = 5;
+
+    // Movement speed for the player.
+    public float PlayerSpeed = 5;
+
+    // X-axis speed (not currently used).
     public float xSpeed;
-		void Start(){
-		GetComponent<Rigidbody2D>().AddForce(Vector2.left * 500f);
+
+    // Start is called before the first frame update.
+    void Start(){
+        // Apply an initial force to move the object leftwards.
+        GetComponent<Rigidbody2D>().AddForce(Vector2.left * 500f);
+        // Set initial state.
         shew = 1;
-		}
+    }
 
-
-		void Update(){
-            
-if (isGrounded == true){ 
-if(shew==1){
-    GetComponent<Rigidbody2D>().AddForce(Vector2.right * 5000f);
-		isGrounded = false;
-        shew = 0;
+    // Update is called once per frame.
+    void Update(){
+        // Check if the object is grounded before applying further forces.
+        if (isGrounded == true){ 
+            // When in state 1, apply force to move right and toggle state.
+            if(shew == 1){
+                GetComponent<Rigidbody2D>().AddForce(Vector2.right * 5000f);
+                isGrounded = false; // Reset grounded flag.
+                shew = 0;          // Toggle state.
+            }
+            // When in state 0, apply force to move left and toggle state.
+            if(shew == 0){
+                GetComponent<Rigidbody2D>().AddForce(Vector2.left * 5000f);
+                isGrounded = false; // Reset grounded flag.
+                shew = 1;         // Toggle state.
+            }
         }
-if(shew==0){
-		GetComponent<Rigidbody2D>().AddForce(Vector2.left * 5000f);
-		isGrounded = false;
-        shew = 1;
-		}
-}
-	}
+    }
 
-
-
-
-
-
+    // Called when the collider enters a collision.
     void OnCollisionEnter2D(Collision2D col){
-
-    
-
-           if(col.gameObject.tag == "Ground"){
-        isGrounded = true;
+        // If the colliding object has the tag "Ground", set isGrounded to true.
+        if(col.gameObject.tag == "Ground"){
+            isGrounded = true;
         }
     }
 }

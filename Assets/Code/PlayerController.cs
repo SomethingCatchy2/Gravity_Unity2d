@@ -112,6 +112,7 @@ public class PlayerController : MonoBehaviour
                 isSlow = false;
                 isFast = false;
                 isIce = false;
+                isJump = false;
                 Debug.Log("Player landed on the ground");
                 break;
 

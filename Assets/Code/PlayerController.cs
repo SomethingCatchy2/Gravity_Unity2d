@@ -208,7 +208,12 @@ public class PlayerController : MonoBehaviour
             new Vector3(312.4f, -21.3f, 0),
             new Vector3(543.9f, -48f, 0),
             new Vector3(-461.5f,-31.4f,0),
-            new Vector3(-745.4f, -22.7f, 0)
+            new Vector3(-745.4f, -22.7f, 0),
+            new Vector3(-789.7f,-128.7f,0),
+            new Vector3(-361.1f,-163.1f,0),
+            new Vector3(-36f,-169.7f,0),
+            new Vector3(294f,-174f,0),
+            new Vector3(654.5f,-174.2f,0)
         };
         transform.position = positions[rand1 - 1];
     }
@@ -223,11 +228,7 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Teleporting via Portal1 to location: " + rand2);
 
         Vector3[] positions = {
-            new Vector3(-789.7f,-128.7f,0),
-            new Vector3(-361.1f,-163.1f,0),
-            new Vector3(-36f,-169.7f,0),
-            new Vector3(294f,-174f,0),
-            new Vector3(654.5f,-174.2f,0)
+  //moved
         };
         transform.position = positions[rand2 - 1];
     }

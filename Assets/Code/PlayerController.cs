@@ -107,27 +107,42 @@ public class PlayerController : MonoBehaviour
         switch (col.gameObject.tag)
         {
             case "Ground":
+                // Reset movement states and mark as grounded when landing
                 isGrounded = true;
+                isSlow = false;
+                isFast = false;
+                isIce = false;
                 Debug.Log("Player landed on the ground");
                 break;
 
             case "jump":
+                // Enable special jump ability when collecting jump powerup
                 isJump = true;
+                isFast = false;
+                isSlow = false;
+                isGrounded = true;
+                isIce = false;
                 Debug.Log("Jump ability reset");
                 break;
 
             case "Heart":
+                // Grant extra life protection
                 isHearted = true;
                 Debug.Log("Heart collected. Extra life granted.");
                 break;
 
             case "ice":
+                // Enable ice physics and disable other movement modifiers
                 isIce = true;
                 isFast = false;
                 isSlow = false;
+                Debug.Log("Player is on ice");
+                isJump = false;
+                isGrounded = false;
                 break;
 
             case "Enemy":
+                // Handle enemy collision with heart protection logic
                 if (isHearted)
                 {
                     isHearted = false;
@@ -141,23 +156,39 @@ public class PlayerController : MonoBehaviour
                 break;
 
             case "Fast":
+                // Enable speed boost and disable slow effect
                 isFast = true;
                 isSlow = false;
+                isJump = false;
+                isGrounded = false;
+                isIce = false;
                 break;
 
             case "Slow":
+                // Enable speed reduction and disable speed boost
                 isSlow = true;
                 isFast = false;
+                isJump = false;
+                isGrounded = false;
+                isIce = false;
+                
                 break;
 
             case "Portal":
+                // Trigger first portal teleportation system
                 Debug.Log("Entered Portal");
                 TeleportPlayer();
                 break;
 
             case "Portal1":
+                // Trigger second portal teleportation system
                 Debug.Log("Entered Portal1");
                 TeleportPlayer1();
+                break;
+            case "toSelect":
+                // Trigger second portal teleportation system
+                Debug.Log("Entered Portal1");
+                TeleportPlayerToSelect();
                 break;
         }
     }
@@ -199,7 +230,12 @@ public class PlayerController : MonoBehaviour
         };
         transform.position = positions[rand2 - 1];
     }
-
+    void TeleportPlayerToSelect()
+    {
+        ResetPlayerState();
+        Debug.Log("Teleporting to Select Level");
+        transform.position = new Vector3(100, 70, 0);
+    }
     /// <summary>
     /// Resets all player state flags and gravity
     /// </summary>
@@ -209,16 +245,19 @@ public class PlayerController : MonoBehaviour
         isFast = false;
         isSlow = false;
         isIce = false;
+        isJump = false;
+        
         rb.gravityScale = 1;
     }
 
     /// <summary>
     /// Reloads the current scene after a short delay
     /// </summary>
-    IEnumerator ReloadScene()
-    {
-        yield return new WaitForSeconds(0.5f);
-        Debug.Log("Scene reloading...");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        IEnumerator ReloadScene()
+        {
+            ResetPlayerState();
+            yield return new WaitForSeconds(0.5f);
+            Debug.Log("Scene reloading...");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
-}

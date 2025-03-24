@@ -181,11 +181,11 @@ public class PlayerController : MonoBehaviour
                 TeleportPlayer();
                 break;
 
-            case "Portal1":
-                // Trigger second portal teleportation system
-                Debug.Log("Entered Portal1");
-                TeleportPlayer1();
-                break;
+            // case "Portal1":
+            //     // Trigger second portal teleportation system
+            //     Debug.Log("Entered Portal1");
+            //     TeleportPlayer1();
+            //     break;
             case "toSelect":
                 // Trigger second portal teleportation system
                 Debug.Log("Entered Portal1");
@@ -218,20 +218,20 @@ public class PlayerController : MonoBehaviour
         transform.position = positions[rand1 - 1];
     }
 
-    /// <summary>
-    /// Teleports player to random location using second portal system
-    /// </summary>
-    void TeleportPlayer1()
-    {
-        rand2 = Random.Range(1, 6);
-        ResetPlayerState();
-        Debug.Log("Teleporting via Portal1 to location: " + rand2);
+//     /// <summary>
+//     /// Teleports player to random location using second portal system
+//     /// </summary>
+//     void TeleportPlayer1()
+//     {
+//         rand2 = Random.Range(1, 6);
+//         ResetPlayerState();
+//         Debug.Log("Teleporting via Portal1 to location: " + rand2);
 
-        Vector3[] positions = {
-  //moved
-        };
-        transform.position = positions[rand2 - 1];
-    }
+//         Vector3[] positions = {
+//   //moved
+//         };
+//         transform.position = positions[rand2 - 1];
+//     }
     void TeleportPlayerToSelect()
     {
         ResetPlayerState();
@@ -258,7 +258,7 @@ public class PlayerController : MonoBehaviour
         IEnumerator ReloadScene()
         {
             ResetPlayerState();
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.01f);
             Debug.Log("Scene reloading...");
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }

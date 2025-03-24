@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public bool isGrounded;    // Indicates if player is touching ground
     public bool isHearted;     // Indicates if player has heart protection
     public bool isJump;        // Indicates if special jump is available
+    public bool isJumpp;        // Indicates if special jump is available
     public bool isFast;        // Indicates if speed boost is active
     public bool isSlow;        // Indicates if speed reduction is active
     public bool isIce;         // Indicates if on ice surface
@@ -28,6 +29,7 @@ public class PlayerController : MonoBehaviour
         isGrounded = false;
         isHearted = false;
         isJump = false;
+        isJumpp = false;
         isFast = false;
         isSlow = false;
         isIce = false;
@@ -82,6 +84,12 @@ public class PlayerController : MonoBehaviour
         {
             StartCoroutine(DelayAction(0.75f));
         }
+
+        if (isJumpp && Input.GetKeyDown(KeyCode.S))
+        {
+            StartCoroutine(DelayAction(0.75f));
+        }
+
     }
 
     /// <summary>
@@ -94,6 +102,7 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(delayTime);
         rb.gravityScale *= -1;
         isJump = false;
+        isJumpp = false;
         Debug.Log("Gravity restored");
     }
 
@@ -191,6 +200,10 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("Entered Portal1");
                 TeleportPlayerToSelect();
                 break;
+
+            case "jumpp":
+                isJumpp = true;
+                break;
         }
     }
 
@@ -218,20 +231,9 @@ public class PlayerController : MonoBehaviour
         transform.position = positions[rand1 - 1];
     }
 
-//     /// <summary>
-//     /// Teleports player to random location using second portal system
-//     /// </summary>
-//     void TeleportPlayer1()
-//     {
-//         rand2 = Random.Range(1, 6);
-//         ResetPlayerState();
-//         Debug.Log("Teleporting via Portal1 to location: " + rand2);
 
-//         Vector3[] positions = {
-//   //moved
-//         };
-//         transform.position = positions[rand2 - 1];
-//     }
+
+
     void TeleportPlayerToSelect()
     {
         ResetPlayerState();
@@ -248,6 +250,7 @@ public class PlayerController : MonoBehaviour
         isSlow = false;
         isIce = false;
         isJump = false;
+        isJumpp = false;
         
         rb.gravityScale = 1;
     }

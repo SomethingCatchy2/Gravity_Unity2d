@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Gravity_Unity2d.sln"
+    "dotnet.defaultSolution": "GordonsGravityGameISteal.sln"
 }

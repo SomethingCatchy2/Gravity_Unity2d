@@ -44,13 +44,17 @@ public class movingEnemy : MonoBehaviour
     void OnCollisionEnter2D(Collision2D col)
     {
         // Set isGrounded to true when colliding with objects tagged as "Ground"
-        if (col.gameObject.tag == "Ground")
+        if(col.gameObject.tag == "Ground")
         {
             isGrounded = true;
         }
 
         // Set isGrounded to true when colliding with objects tagged as "Player"
-        if (col.gameObject.tag == "Player")
+        if(col.gameObject.tag == "Player")
+        {
+            isGrounded = true;
+        }
+        if(col.gameObject.tag == "Portal")
         {
             isGrounded = true;
         }

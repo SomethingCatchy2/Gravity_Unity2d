@@ -42,47 +42,57 @@ public class PlayerController : MonoBehaviour
     }
 
     void Update()
+{
+    // Handle speed modifications based on power-ups
+    if (isIce)
     {
-        // Handle speed modifications based on power-ups
-        if (isIce)
-        {
-            isFast = false;
-            isSlow = false;
-            xSpeed = 7.5f;
-        }
-        else if (isFast)
-        {
-            xSpeed = 20f;
-        }
-        else if (isSlow)
-        {
-            xSpeed = 2f;
-        }
-        else
-        {
-            xSpeed = 7.5f;
-        }
-
-        // Handle horizontal movement
-        float moveInput = Input.GetAxis("Horizontal");
-        rb.linearVelocity = new Vector2(moveInput * xSpeed, rb.linearVelocity.y);
-        rb.linearVelocity *= (1 - bounciness);
-        Debug.Log("Player moving with velocity: " + rb.linearVelocity);
-
-        // Handle gravity flip with W key
-        if (Input.GetKeyDown(KeyCode.W) && isGrounded)
-        {
-            rb.gravityScale *= -1;
-            isGrounded = false;
-            Debug.Log("Gravity flipped. New gravity scale: " + rb.gravityScale);
-        }
-
-        // Handle temporary gravity flip with S key
-        if (isJump && Input.GetKeyDown(KeyCode.S))
-        {
-            StartCoroutine(DelayAction(0.75f));
-        }
+        isFast = false;
+        isSlow = false;
+        xSpeed = 7.5f;
     }
+    else if (isFast)
+    {
+        xSpeed = 20f;
+    }
+    else if (isSlow)
+    {
+        xSpeed = 2f;
+    }
+    else
+    {
+        xSpeed = 7.5f;
+    }
+
+    // Handle horizontal movement with both WASD and Arrow Keys
+    float moveInput = Input.GetAxis("Horizontal"); // Supports A/D and Left/Right Arrow
+    if (Input.GetKey(KeyCode.LeftArrow))
+    {
+        moveInput = -1;
+    }
+    else if (Input.GetKey(KeyCode.RightArrow))
+    {
+        moveInput = 1;
+    }
+
+    rb.linearVelocity = new Vector2(moveInput * xSpeed, rb.linearVelocity.y);
+    rb.linearVelocity *= (1 - bounciness);
+    Debug.Log("Player moving with velocity: " + rb.linearVelocity);
+
+    // Handle gravity flip with W or Up Arrow key
+    if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && isGrounded)
+    {
+        rb.gravityScale *= -1;
+        isGrounded = false;
+        Debug.Log("Gravity flipped. New gravity scale: " + rb.gravityScale);
+    }
+
+    // Handle temporary gravity flip with S or Down Arrow key
+    if (isJump && (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)))
+    {
+        StartCoroutine(DelayAction(0.75f));
+    }
+}
+
 
     /// <summary>
     /// Temporarily flips gravity for a specified duration

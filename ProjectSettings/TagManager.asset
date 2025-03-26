@@ -17,6 +17,8 @@ TagManager:
   - ice
   - Portal2
   - toSelect
+  - jumpp
+  - air
   layers:
   - Default
   - TransparentFX

@@ -143,12 +143,12 @@ public class PlayerController : MonoBehaviour
 
             case "ice":
                 // Enable ice physics and disable other movement modifiers
-                isIce = true;
-                isFast = false;
-                isSlow = false;
+                // isIce = true;
+                // isFast = false;
+                // isSlow = false;
                 Debug.Log("Player is on ice");
-                isJump = false;
-                isGrounded = false;
+                // isJump = false;
+                // isGrounded = false;
                 break;
 
             case "Enemy":

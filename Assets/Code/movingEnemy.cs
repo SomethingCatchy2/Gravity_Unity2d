@@ -59,5 +59,10 @@ public class movingEnemy : MonoBehaviour
         {
             isGrounded = true;
         }
+
+        if (col.gameObject.tag == "ice")
+        {
+            isGrounded = true;
+        }
     }
 }

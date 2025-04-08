@@ -23,6 +23,7 @@ public class movingEnemy : MonoBehaviour
     public float jumpStrength;
     // Random value variable
     public float rand1;
+    public float rand2;
 
     void Start()
     {
@@ -45,22 +46,6 @@ public class movingEnemy : MonoBehaviour
     {
         // Set isGrounded to true when colliding with objects tagged as "Ground"
         if (col.gameObject.tag == "Ground")
-        {
-            isGrounded = true;
-        }
-
-        // Set isGrounded to true when colliding with objects tagged as "Player"
-        if (col.gameObject.tag == "Player")
-        {
-            isGrounded = true;
-        }
-
-        if (col.gameObject.tag == "keepStuff")
-        {
-            isGrounded = true;
-        }
-
-        if (col.gameObject.tag == "ice")
         {
             isGrounded = true;
         }

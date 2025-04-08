@@ -2,51 +2,59 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-/// <summary>
-/// Controls the player character's movement, abilities, and interactions
-/// </summary>
 public class PlayerController : MonoBehaviour
 {
     // State flags for player conditions
-    public bool isGrounded;    // Indicates if player is touching ground
-    public bool isHearted;     // Indicates if player has heart protection
-    public bool isJump;        // Indicates if special jump is available
-    public bool isJumpp;        // Indicates if special jump is available
-    public bool isFast;        // Indicates if speed boost is active
-    public bool isSlow;        // Indicates if speed reduction is active
-    public bool isIce;         // Indicates if on ice surface
-    public Rigidbody2D rb;     // Reference to the player's Rigidbody2D component
+    public bool isGrounded;
+    public bool isHearted;
+    public bool isHeartted;
+    public bool isJump;
+    public bool isJumpp;
+    public bool isFast;
+    public bool isSlow;
+    public bool isIce;
+    public Rigidbody2D rb;
 
     // Movement and physics parameters
-    public float xSpeed = 7.5f;        // Base horizontal movement speed
-    public float bounciness = 0.0f;    // Bounce factor
-    public float jumpStrength = 5f;    // Jump force strength
-    private int rand1, rand2;          // Random values for portal teleportation
+    public float xSpeed = 7.5f;
+    public float killcount = 0f;
+    public float bounciness = 0.0f;
+    public float jumpStrength = 5f;
+    private static float portalcount = 0;
+
+    // ✅ New: Checkpoint position
+    private static Vector3 lastCheckpointPosition = new Vector3(-146.1f, 201.8f, 0);
+    private static bool respawningFromCheckpoint = false;
 
     void Start()
     {
-        // Initialize all state flags to false
         isGrounded = false;
         isHearted = false;
+        isHeartted = false;
         isJump = false;
         isJumpp = false;
         isFast = false;
         isSlow = false;
         isIce = false;
-        
-        // Get reference to the Rigidbody2D component
+
         rb = GetComponent<Rigidbody2D>();
 
         if (rb == null)
         {
             Debug.LogError("Rigidbody2D component is missing from this GameObject!");
         }
+
+        // ✅ New: If we're respawning, teleport to last checkpoint
+        if (respawningFromCheckpoint)
+        {
+            transform.position = lastCheckpointPosition;
+            respawningFromCheckpoint = false;
+        }
     }
 
     void Update()
     {
-        // Handle speed modifications based on power-ups
-        if (isIce)
+        if (isGrounded)
         {
             isFast = false;
             isSlow = false;
@@ -58,28 +66,23 @@ public class PlayerController : MonoBehaviour
         }
         else if (isSlow)
         {
-            xSpeed = 2f;
+            xSpeed = 3f;
         }
         else
         {
             xSpeed = 7.5f;
         }
 
-        // Handle horizontal movement
         float moveInput = Input.GetAxis("Horizontal");
         rb.linearVelocity = new Vector2(moveInput * xSpeed, rb.linearVelocity.y);
         rb.linearVelocity *= (1 - bounciness);
-        Debug.Log("Player moving with velocity: " + rb.linearVelocity);
 
-        // Handle gravity flip with W key
         if (Input.GetKeyDown(KeyCode.W) && isGrounded)
         {
             rb.gravityScale *= -1;
             isGrounded = false;
-            Debug.Log("Gravity flipped. New gravity scale: " + rb.gravityScale);
         }
 
-        // Handle temporary gravity flip with S key
         if (isJump && Input.GetKeyDown(KeyCode.S))
         {
             StartCoroutine(DelayAction(0.75f));
@@ -89,150 +92,188 @@ public class PlayerController : MonoBehaviour
         {
             StartCoroutine(DelayAction(0.75f));
         }
-
     }
 
-    /// <summary>
-    /// Temporarily flips gravity for a specified duration
-    /// </summary>
     IEnumerator DelayAction(float delayTime)
     {
         rb.gravityScale *= -1;
-        Debug.Log("Temporary gravity flip activated");
         yield return new WaitForSeconds(delayTime);
         rb.gravityScale *= -1;
-        isJump = false;
         isJumpp = false;
-        Debug.Log("Gravity restored");
     }
 
-    /// <summary>
-    /// Handles all collision events with tagged objects
-    /// </summary>
     void OnCollisionEnter2D(Collision2D col)
     {
-        Debug.Log("Collided with: " + col.gameObject.tag);
-
         switch (col.gameObject.tag)
         {
             case "Ground":
-                // Reset movement states and mark as grounded when landing
                 isGrounded = true;
-                isSlow = false;
-                isFast = false;
-                isIce = false;
                 isJump = false;
-                Debug.Log("Player landed on the ground");
-                break;
-
-            case "jump":
-                // Enable special jump ability when collecting jump powerup
-                isJump = true;
-                isFast = false;
-                isSlow = false;
-                isGrounded = true;
-                isIce = false;
-                Debug.Log("Jump ability reset");
-                break;
-
-            case "Heart":
-                // Grant extra life protection
-                isHearted = true;
-                Debug.Log("Heart collected. Extra life granted.");
-                break;
-
-            case "ice":
-                // Enable ice physics and disable other movement modifiers
-                // isIce = true;
-                // isFast = false;
-                // isSlow = false;
-                Debug.Log("Player is on ice");
-                // isJump = false;
-                // isGrounded = false;
                 break;
 
             case "Enemy":
-                // Handle enemy collision with heart protection logic
-                if (isHearted)
+                if (isHeartted)
+                {
+                    isHeartted = false;
+                }
+                else if (isHearted)
                 {
                     isHearted = false;
-                    Debug.Log("Hit by enemy but survived due to heart");
                 }
                 else
                 {
-                    Debug.Log("Hit by enemy. Reloading scene...");
-                    StartCoroutine(ReloadScene());
+                    // ✅ New: Set flag and reload scene to respawn at checkpoint
+                    respawningFromCheckpoint = true;
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                 }
                 break;
 
-            case "Fast":
-                // Enable speed boost and disable slow effect
-                isFast = true;
-                isSlow = false;
-                isJump = false;
-                isGrounded = false;
-                isIce = false;
+            case "Heart":
+                isHearted = true;
                 break;
 
-            case "Slow":
-                // Enable speed reduction and disable speed boost
-                isSlow = true;
-                isFast = false;
-                isJump = false;
-                isGrounded = false;
-                isIce = false;
-                
+            case "Heartt":
+                isHeartted = true;
                 break;
 
-            case "Portal":
-                // Trigger first portal teleportation system
-                Debug.Log("Entered Portal");
-                TeleportPlayer();
+            case "ice":
+                isIce = true;
                 break;
 
-            // case "Portal1":
-            //     // Trigger second portal teleportation system
-            //     Debug.Log("Entered Portal1");
-            //     TeleportPlayer1();
-            //     break;
-            case "toSelect":
-                // Trigger second portal teleportation system
-                Debug.Log("Entered Portal1");
-                TeleportPlayerToSelect();
+            case "jump":
+                isJump = true;
                 break;
 
             case "jumpp":
                 isJumpp = true;
                 break;
+
+            case "bossportal":
+                transform.position = new Vector3(1252.1f, 18.38f, 0);
+                break;
+
+            case "bosskill":
+                if (killcount == 3)
+                {
+                    transform.position = new Vector3(1137.22f, -85.44f, 0);
+                }
+                else
+                {
+                    killcount += 1;
+                    Destroy(col.gameObject);
+                }
+                break;
+
+            case "home":
+                transform.position = new Vector3(-146.86f, 203.9f, 0);
+                break;
+
+            case "Fast":
+                isFast = true;
+                isSlow = false;
+                break;
+
+            case "Slow":
+                isSlow = true;
+                isFast = false;
+                break;
+
+            case "Portal":
+                TeleportPlayer();
+                portalcount += 1;
+                break;
+
+            case "toSelect":
+                TeleportPlayerToSelect();
+                break;
         }
     }
 
-    /// <summary>
-    /// Teleports player to random location using first portal system
-    /// </summary>
-    void TeleportPlayer()
-    {
-        rand1 = Random.Range(1, 6);
-        ResetPlayerState();
-        Debug.Log("Teleporting to random location: " + rand1);
 
-        Vector3[] positions = {
-            new Vector3(7.6f, -0.7f, 0),
-            new Vector3(312.4f, -21.3f, 0),
-            new Vector3(543.9f, -48f, 0),
-            new Vector3(-461.5f,-31.4f,0),
-            new Vector3(-745.4f, -22.7f, 0),
-            new Vector3(-789.7f,-128.7f,0),
-            new Vector3(-361.1f,-163.1f,0),
-            new Vector3(-36f,-169.7f,0),
-            new Vector3(294f,-174f,0),
-            new Vector3(654.5f,-174.2f,0)
-        };
-        transform.position = positions[rand1 - 1];
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("check"))
+        {
+            Debug.Log("Trigger entered!");
+            lastCheckpointPosition = transform.position;
+        }
     }
 
-
-
+    void TeleportPlayer()
+    {
+        if (portalcount == 1)
+        {
+            transform.position = new Vector3(-469.329987f,-31.02f,0);
+        }
+        else if (portalcount == 2)
+        {
+            transform.position = new Vector3(-0.629999995f,-0.150000006f,0);
+        }
+        else if (portalcount == 3)
+        {
+            transform.position = new Vector3(309.6f,-21.4f,0);
+        }
+        else if (portalcount == 4)
+        {
+            transform.position = new Vector3(536.13f,-46.86f,0);
+        }
+        else if (portalcount == 5)
+        {
+            transform.position = new Vector3(-751.01f,-23.34f,0);
+        }
+        else if (portalcount == 6)
+        {
+            transform.position = new Vector3(-351.399994f,-168.899994f,0);
+        }
+        else if (portalcount == 7)
+        {
+            transform.position = new Vector3(-793.799988f,-135.300003f,0);
+        }
+        else if (portalcount == 8)
+        {
+            transform.position = new Vector3(655.0f,-177.899994f,0);
+        }
+        else if (portalcount == 9)
+        {
+            transform.position = new Vector3(294.0f,-172.880005f,0);
+        }
+        else if (portalcount == 10)
+        {
+            transform.position = new Vector3(-31.8999996f,-170.300003f,0);
+        }
+        else if (portalcount == 11)
+        {
+            transform.position = new Vector3(-677.200012f,-314.100006f,0);
+        }
+        else if (portalcount == 12)
+        {
+            transform.position = new Vector3(-377.0f,-295.0f,0);
+        }
+        else if (portalcount == 13)
+        {
+            transform.position = new Vector3(-790.5f,-444.100006f,0);
+        }
+        else if (portalcount == 14)
+        {
+            transform.position = new Vector3(-376.880005f,-441.880005f,0);
+        }
+        else if (portalcount == 15)
+        {
+            transform.position = new Vector3(-61.2000008f,-502.399994f,0);
+        }
+        else if (portalcount == 16)
+        {
+            transform.position = new Vector3(278.98999f,-438.890015f,0);
+        }
+        else if (portalcount == 17)
+        {
+            transform.position = new Vector3(614.849976f,-464.649994f,0);
+        }
+        else if (portalcount == 18) //boss leavle
+        {
+            transform.position = new Vector3(939.47998f,19.2399998f,0);
+        }
+    }
 
     void TeleportPlayerToSelect()
     {
@@ -240,29 +281,15 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Teleporting to Select Level");
         transform.position = new Vector3(100, 70, 0);
     }
-    /// <summary>
-    /// Resets all player state flags and gravity
-    /// </summary>
+
     void ResetPlayerState()
     {
         isJump = false;
         isFast = false;
         isSlow = false;
         isIce = false;
-        isJump = false;
         isJumpp = false;
-        
+
         rb.gravityScale = 1;
     }
-
-    /// <summary>
-    /// Reloads the current scene after a short delay
-    /// </summary>
-        IEnumerator ReloadScene()
-        {
-            ResetPlayerState();
-            yield return new WaitForSeconds(0.01f);
-            Debug.Log("Scene reloading...");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
-    }
+}

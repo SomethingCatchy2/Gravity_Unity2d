@@ -19,6 +19,13 @@ TagManager:
   - toSelect
   - jumpp
   - air
+  - boss portal
+  - bossportal
+  - bosskill
+  - home
+  - Heartt
+  - checkpoint
+  - check
   layers:
   - Default
   - TransparentFX

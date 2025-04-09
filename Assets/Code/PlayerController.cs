@@ -182,6 +182,7 @@ public class PlayerController : MonoBehaviour
                 TeleportPlayer();
                 portalcount += 1;
                 break;
+                ResetPlayerState();
 
             case "toSelect":
                 TeleportPlayerToSelect();
@@ -289,6 +290,8 @@ public class PlayerController : MonoBehaviour
         isSlow = false;
         isIce = false;
         isJumpp = false;
+        // isHearted = false;
+        // isHeartted = false;
 
         rb.gravityScale = 1;
     }

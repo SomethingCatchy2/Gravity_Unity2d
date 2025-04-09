@@ -77,7 +77,7 @@ public class PlayerController : MonoBehaviour
         rb.linearVelocity = new Vector2(moveInput * xSpeed, rb.linearVelocity.y);
         rb.linearVelocity *= (1 - bounciness);
 
-        if (Input.GetKeyDown(KeyCode.W) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) && isGrounded)
         {
             rb.gravityScale *= -1;
             isGrounded = false;
@@ -88,7 +88,7 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(DelayAction(0.75f));
         }
 
-        if (isJumpp && Input.GetKeyDown(KeyCode.S))
+        if (isJumpp && Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
         {
             StartCoroutine(DelayAction(0.75f));
         }
@@ -181,8 +181,9 @@ public class PlayerController : MonoBehaviour
             case "Portal":
                 TeleportPlayer();
                 portalcount += 1;
-                break;
                 ResetPlayerState();
+                break;
+           
 
             case "toSelect":
                 TeleportPlayerToSelect();
@@ -305,8 +306,8 @@ public class PlayerController : MonoBehaviour
         isSlow = false;
         isIce = false;
         isJumpp = false;
-        // isHearted = false;
-        // isHeartted = false;
+        isHearted = false;
+        isHeartted = false;
 
         rb.gravityScale = 1;
     }

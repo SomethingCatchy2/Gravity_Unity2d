@@ -49,5 +49,33 @@ public class movingEnemy : MonoBehaviour
         {
             isGrounded = true;
         }
+                if (col.gameObject.tag == "Ground")
+        {
+            isGrounded = true;
+        }
+                if (col.gameObject.tag == "Enemy")
+        {
+            isGrounded = true;
+        }
+                if (col.gameObject.tag == "keepstuff")
+        {
+            isGrounded = true;
+        }
+                if (col.gameObject.tag == "player")
+        {
+            isGrounded = true;
+        }
+                if (col.gameObject.tag == "ice")
+        {
+            isGrounded = true;
+        }
+                if (col.gameObject.tag == "Fast")
+        {
+            isGrounded = true;
+        }
+                if (col.gameObject.tag == "Slow")
+        {
+            isGrounded = true;
+        }
     }
 }

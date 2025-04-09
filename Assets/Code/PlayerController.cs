@@ -198,6 +198,21 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Trigger entered!");
             lastCheckpointPosition = transform.position;
         }
+        if (other.CompareTag("Enemy"))
+                if (isHeartted)
+                {
+                    isHeartted = false;
+                }
+                else if (isHearted)
+                {
+                    isHearted = false;
+                }
+                else
+                {
+                    // ✅ New: Set flag and reload scene to respawn at checkpoint
+                    respawningFromCheckpoint = true;
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                }
     }
 
     void TeleportPlayer()

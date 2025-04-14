@@ -77,18 +77,18 @@ public class PlayerController : MonoBehaviour
         rb.linearVelocity = new Vector2(moveInput * xSpeed, rb.linearVelocity.y);
         rb.linearVelocity *= (1 - bounciness);
 
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.W) && isGrounded || Input.GetKeyDown(KeyCode.UpArrow) && isGrounded)
         {
             rb.gravityScale *= -1;
             isGrounded = false;
         }
 
-        if (isJump && Input.GetKeyDown(KeyCode.S))
+        if (isJump && Input.GetKeyDown(KeyCode.S) || isJump && Input.GetKeyDown(KeyCode.DownArrow))
         {
             StartCoroutine(DelayAction(0.75f));
         }
 
-        if (isJumpp && Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+        if (isJumpp && Input.GetKeyDown(KeyCode.S) || isJumpp && Input.GetKeyDown(KeyCode.DownArrow))
         {
             StartCoroutine(DelayAction(0.75f));
         }
@@ -128,14 +128,7 @@ public class PlayerController : MonoBehaviour
                 }
                 break;
 
-            case "Heart":
-                isHearted = true;
-                break;
-
-            case "Heartt":
-                isHeartted = true;
-                break;
-
+          
             case "ice":
                 isIce = true;
                 break;
@@ -178,11 +171,7 @@ public class PlayerController : MonoBehaviour
                 isFast = false;
                 break;
 
-            case "Portal":
-                TeleportPlayer();
-                portalcount += 1;
-                ResetPlayerState();
-                break;
+           
            
 
             case "toSelect":
@@ -214,6 +203,26 @@ public class PlayerController : MonoBehaviour
                     respawningFromCheckpoint = true;
                     SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                 }
+        if (other.CompareTag("Heart") || other.CompareTag("Heartt"))
+        {
+            if (other.CompareTag("Heart"))
+            {
+                isHearted = true;
+            }
+            if (other.CompareTag("Heartt"))
+            {
+                isHeartted = true;
+            }
+            
+        }
+        if (other.CompareTag("Portal"))
+        {
+            portalcount += 1;
+            TeleportPlayer();
+            ResetPlayerState();
+
+        }
+        
     }
 
     void TeleportPlayer()

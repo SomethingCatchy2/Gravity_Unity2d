@@ -39,6 +39,7 @@ public class movingEnemy : MonoBehaviour
         {
             rb.gravityScale = rb.gravityScale * -1f;
             isGrounded = false;
+            Debug.Log("no eh");
         }
     }
 
@@ -48,34 +49,55 @@ public class movingEnemy : MonoBehaviour
         if (col.gameObject.tag == "Ground")
         {
             isGrounded = true;
+            Debug.Log("eh");
         }
-                if (col.gameObject.tag == "Ground")
-        {
-            isGrounded = true;
-        }
+                
+                  
                 if (col.gameObject.tag == "Enemy")
         {
             isGrounded = true;
+            Debug.Log("eh");
         }
+             
                 if (col.gameObject.tag == "keepstuff")
         {
-            isGrounded = true;
+            isGrounded = true; 
+            Debug.Log("eh");
         }
-                if (col.gameObject.tag == "player")
+            
+                if (col.gameObject.tag == "Player")
         {
             isGrounded = true;
+            Debug.Log("eh");
         }
+            
                 if (col.gameObject.tag == "ice")
         {
             isGrounded = true;
+            Debug.Log("eh");
         }
+            
                 if (col.gameObject.tag == "Fast")
         {
             isGrounded = true;
+            Debug.Log("eh");
         }
+            
                 if (col.gameObject.tag == "Slow")
         {
             isGrounded = true;
+            Debug.Log("eh");
+        }
+
+                if (col.gameObject.tag == "jumpp")
+        {
+            isGrounded = true;
+            Debug.Log("eh");
+        }
+        if (col.gameObject.tag == "jump")
+        {
+            isGrounded = true;
+            Debug.Log("eh");
         }
     }
 }

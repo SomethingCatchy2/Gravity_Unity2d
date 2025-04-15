@@ -97,9 +97,9 @@ public class PlayerController : MonoBehaviour
     IEnumerator DelayAction(float delayTime)
     {
         rb.gravityScale *= -1;
+        isJumpp = false;
         yield return new WaitForSeconds(delayTime);
         rb.gravityScale *= -1;
-        isJumpp = false;
     }
 
     void OnCollisionEnter2D(Collision2D col)

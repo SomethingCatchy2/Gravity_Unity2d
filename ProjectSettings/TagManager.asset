@@ -26,6 +26,7 @@ TagManager:
   - Heartt
   - checkpoint
   - check
+  - More Tor
   layers:
   - Default
   - TransparentFX
@@ -34,9 +35,9 @@ TagManager:
   - Water
   - UI
   - nocolidy_cept3
-  - 
-  - 
-  - 
+  - mortor
+  - player lary
+  - stop+mortor
   - 
   - 
   - 

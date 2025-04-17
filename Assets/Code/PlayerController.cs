@@ -15,6 +15,9 @@ public class PlayerController : MonoBehaviour
     public bool isIce;
     public Rigidbody2D rb;
 
+    // Partical defines
+    public ParticleSystem JumpPar;
+
     // Movement and physics parameters
     public float xSpeed = 7.5f;
     public float killcount = 0f;
@@ -79,6 +82,8 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.W) && isGrounded || Input.GetKeyDown(KeyCode.UpArrow) && isGrounded)
         {
+            
+            JumpPar.Play();
             rb.gravityScale *= -1;
             isGrounded = false;
         }

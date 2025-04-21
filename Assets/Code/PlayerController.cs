@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
 
     // Partical defines
     public ParticleSystem JumpPar;
-
+    public ParticleSystem CheckpointPar;
     // Movement and physics parameters
     public float xSpeed = 7.5f;
     public float killcount = 0f;
@@ -188,9 +188,10 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("check"))
+        if (other.CompareTag("check")) //Checkpoint col check + update.
         {
             Debug.Log("Trigger entered!");
+            CheckpointPar.Play();
             lastCheckpointPosition = transform.position;
         }
         if (other.CompareTag("Enemy"))

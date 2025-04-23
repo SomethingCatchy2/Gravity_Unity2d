@@ -7,7 +7,7 @@ public class Follow : MonoBehaviour
     public GameObject target; 
 
     // Movement speed in units per second
-    public float speed = 5f;  
+    public float speed;  
 
     // Update is called once per frame
     void Update()

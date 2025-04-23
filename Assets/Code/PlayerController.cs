@@ -18,12 +18,16 @@ public class PlayerController : MonoBehaviour
     // Partical defines
     public ParticleSystem JumpPar;
     public ParticleSystem CheckpointPar;
+    public ParticleSystem HasGravPar;
+    public ParticleSystem HasHeartPar;
+    public ParticleSystem HasJumpPar;
+    public ParticleSystem FireWork1;
     // Movement and physics parameters
     public float xSpeed = 7.5f;
     public float killcount = 0f;
     public float bounciness = 0.0f;
     public float jumpStrength = 5f;
-    private static float portalcount = 0;
+    public static float portalcount = 0;
 
     // ✅ New: Checkpoint position
     private static Vector3 lastCheckpointPosition = new Vector3(-146.1f, 201.8f, 0);
@@ -62,6 +66,7 @@ public class PlayerController : MonoBehaviour
             isFast = false;
             isSlow = false;
             xSpeed = 7.5f;
+            HasGravPar.Play();
         }
         else if (isFast)
         {
@@ -83,19 +88,23 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.W) && isGrounded || Input.GetKeyDown(KeyCode.UpArrow) && isGrounded)
         {
             
-            JumpPar.Play();
+            HasGravPar.Stop();
             rb.gravityScale *= -1;
             isGrounded = false;
+           
+            
         }
 
         if (isJump && Input.GetKeyDown(KeyCode.S) || isJump && Input.GetKeyDown(KeyCode.DownArrow))
         {
             StartCoroutine(DelayAction(0.75f));
+            HasJumpPar.Stop();
         }
 
         if (isJumpp && Input.GetKeyDown(KeyCode.S) || isJumpp && Input.GetKeyDown(KeyCode.DownArrow))
         {
             StartCoroutine(DelayAction(0.75f));
+            HasJumpPar.Stop();
         }
     }
 
@@ -105,6 +114,7 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(delayTime);
         rb.gravityScale *= -1;
         isJumpp = false;
+       
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -120,10 +130,12 @@ public class PlayerController : MonoBehaviour
                 if (isHeartted)
                 {
                     isHeartted = false;
+                    HasHeartPar.Stop();
                 }
                 else if (isHearted)
                 {
                     isHearted = false;
+                    HasHeartPar.Stop();
                 }
                 else
                 {
@@ -139,10 +151,12 @@ public class PlayerController : MonoBehaviour
                 break;
 
             case "jump":
+               HasJumpPar.Play();
                 isJump = true;
                 break;
 
             case "jumpp":
+            HasJumpPar.Play();
                 isJumpp = true;
                 break;
 
@@ -212,11 +226,14 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("Heart") || other.CompareTag("Heartt"))
         {
             if (other.CompareTag("Heart"))
+            
             {
+            HasHeartPar.Play();
                 isHearted = true;
             }
             if (other.CompareTag("Heartt"))
             {
+                HasHeartPar.Play();
                 isHeartted = true;
             }
             
@@ -228,7 +245,12 @@ public class PlayerController : MonoBehaviour
             ResetPlayerState();
 
         }
-        
+if (other.CompareTag("Finish"))
+        {
+           FireWork1.Play();
+
+        }
+
     }
 
     void TeleportPlayer()

@@ -38,8 +38,8 @@ TagManager:
   - mortor
   - player lary
   - stop+mortor
-  - 
-  - 
+  - 'wall '
+  - wall_stop
   - 
   - 
   - 

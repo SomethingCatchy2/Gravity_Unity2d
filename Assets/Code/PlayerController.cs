@@ -110,11 +110,11 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator DelayAction(float delayTime)
     {
+        isJumpp = false;
+        isJump = false;
         rb.gravityScale *= -1;
         yield return new WaitForSeconds(delayTime);
         rb.gravityScale *= -1;
-        isJumpp = false;
-       
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -153,11 +153,13 @@ public class PlayerController : MonoBehaviour
             case "jump":
                HasJumpPar.Play();
                 isJump = true;
+                isGrounded = true;
                 break;
 
             case "jumpp":
             HasJumpPar.Play();
                 isJumpp = true;
+                isGrounded = true;
                 break;
 
             case "bossportal":

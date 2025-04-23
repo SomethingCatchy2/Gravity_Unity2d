@@ -142,10 +142,12 @@ public class PlayerController : MonoBehaviour
 
             case "jump":
                 isJump = true;
+                isGrounded = true;
                 break;
 
             case "jumpp":
                 isJumpp = true;
+                isGrounded = true;
                 break;
 
             case "bossportal":

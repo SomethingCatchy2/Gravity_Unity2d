@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     public bool isFast;
     public bool isSlow;
     public bool isIce;
+    public bool isDead;
     public Rigidbody2D rb;
 
     // Partical defines
@@ -22,6 +23,10 @@ public class PlayerController : MonoBehaviour
     public ParticleSystem HasHeartPar;
     public ParticleSystem HasJumpPar;
     public ParticleSystem FireWork1;
+    public ParticleSystem DiededPar; 
+    // define Sprite
+    public SpriteRenderer JeffSprite;
+
     // Movement and physics parameters
     public float xSpeed = 7.5f;
     public float killcount = 0f;
@@ -66,7 +71,7 @@ public class PlayerController : MonoBehaviour
             isFast = false;
             isSlow = false;
             xSpeed = 7.5f;
-            HasGravPar.Play();
+           
         }
         else if (isFast)
         {
@@ -85,7 +90,7 @@ public class PlayerController : MonoBehaviour
         rb.linearVelocity = new Vector2(moveInput * xSpeed, rb.linearVelocity.y);
         rb.linearVelocity *= (1 - bounciness);
 
-        if (Input.GetKeyDown(KeyCode.W) && isGrounded || Input.GetKeyDown(KeyCode.UpArrow) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.W) && isGrounded && !isDead || Input.GetKeyDown(KeyCode.UpArrow) && isGrounded && !isDead)
         {
             
             HasGravPar.Stop();
@@ -95,13 +100,13 @@ public class PlayerController : MonoBehaviour
             
         }
 
-        if (isJump && Input.GetKeyDown(KeyCode.S) || isJump && Input.GetKeyDown(KeyCode.DownArrow))
+        if (isJump && Input.GetKeyDown(KeyCode.S) && !isDead || isJump && Input.GetKeyDown(KeyCode.DownArrow) && !isDead)
         {
             StartCoroutine(DelayAction(0.75f));
             HasJumpPar.Stop();
         }
 
-        if (isJumpp && Input.GetKeyDown(KeyCode.S) || isJumpp && Input.GetKeyDown(KeyCode.DownArrow))
+        if (isJumpp && Input.GetKeyDown(KeyCode.S) && !isDead || isJumpp && Input.GetKeyDown(KeyCode.DownArrow) && !isDead)
         {
             StartCoroutine(DelayAction(0.75f));
             HasJumpPar.Stop();
@@ -116,6 +121,16 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(delayTime);
         rb.gravityScale *= -1;
     }
+      IEnumerator Die(float delayTime)
+    {
+                    
+                    respawningFromCheckpoint = true;
+                    JeffSprite.enabled = false;
+                    DiededPar.Play();
+                    yield return new WaitForSeconds(5);
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
 
     void OnCollisionEnter2D(Collision2D col)
     {
@@ -124,6 +139,8 @@ public class PlayerController : MonoBehaviour
             case "Ground":
                 isGrounded = true;
                 isJump = false;
+                HasGravPar.Play();
+                
                 break;
 
             case "Enemy":
@@ -139,9 +156,9 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
-                    // ✅ New: Set flag and reload scene to respawn at checkpoint
-                    respawningFromCheckpoint = true;
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+                      StartCoroutine(Die(5f));
+                    
                 }
                 break;
 
@@ -221,9 +238,10 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
+                    StartCoroutine(Die(5f));
                     // ✅ New: Set flag and reload scene to respawn at checkpoint
-                    respawningFromCheckpoint = true;
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+       
+          
                 }
         if (other.CompareTag("Heart") || other.CompareTag("Heartt"))
         {

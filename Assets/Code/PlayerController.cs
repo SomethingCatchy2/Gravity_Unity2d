@@ -127,7 +127,7 @@ public class PlayerController : MonoBehaviour
                     respawningFromCheckpoint = true;
                     JeffSprite.enabled = false;
                     DiededPar.Play();
-                    yield return new WaitForSeconds(0);
+                    yield return new WaitForSeconds(5);
                     SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 

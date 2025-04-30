@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     public ParticleSystem CheckpointPar;
     public ParticleSystem HasGravPar;
     public ParticleSystem HasHeartPar;
+    public ParticleSystem HasHearttPar;
     public ParticleSystem HasJumpPar;
     public ParticleSystem FireWork1;
     public ParticleSystem DiededPar; 
@@ -66,6 +67,29 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if(isGrounded){
+            HasGravPar.Play();
+        }else{HasGravPar.Stop();}
+
+
+        if(isHearted){   
+            HasHeartPar.Play();   
+        }else{HasHeartPar.Stop();}
+
+        
+        if(isHeartted){
+            HasHearttPar.Play();
+        }else{HasHearttPar.Stop();}
+
+        if(isJump || isJumpp){
+            HasJumpPar.Play();
+        }else{HasJumpPar.Stop();}
+
+       
+       
+
+
+       
         if (isGrounded)
         {
             isFast = false;
@@ -93,7 +117,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.W) && isGrounded && !isDead || Input.GetKeyDown(KeyCode.UpArrow) && isGrounded && !isDead)
         {
             
-            
+            JumpPar.Play();
             rb.gravityScale *= -1;
             isGrounded = false;
            
@@ -224,7 +248,7 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("check")) //Checkpoint col check + update.
         {
             Debug.Log("Trigger entered!");
-            
+            CheckpointPar.Play();
             lastCheckpointPosition = transform.position;
         }
         if (other.CompareTag("Enemy"))

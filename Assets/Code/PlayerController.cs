@@ -171,13 +171,13 @@ public class PlayerController : MonoBehaviour
         if (isJump && Input.GetKeyDown(KeyCode.S) && !isDead || isJump && Input.GetKeyDown(KeyCode.DownArrow) && !isDead)
         {
             StartCoroutine(DelayAction(0.75f));
-          
+            HasJumpPar.Stop();
         }
 
         if (isJumpp && Input.GetKeyDown(KeyCode.S) && !isDead || isJumpp && Input.GetKeyDown(KeyCode.DownArrow) && !isDead)
         {
             StartCoroutine(DelayAction(0.75f));
-      
+            HasJumpPar.Stop();
         }
     }
 
@@ -191,7 +191,7 @@ public class PlayerController : MonoBehaviour
     }
       IEnumerator Die(float delayTime)
     {
-                    GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+                    
                     respawningFromCheckpoint = true;
                     JeffSprite.enabled = false;
                     DiededPar.Play();
@@ -207,7 +207,7 @@ public class PlayerController : MonoBehaviour
             case "Ground":
                 isGrounded = true;
                 isJump = false;
-            
+                HasGravPar.Play();
                 
                 break;
 
@@ -215,12 +215,12 @@ public class PlayerController : MonoBehaviour
                 if (isHeartted)
                 {
                     isHeartted = false;
-                  
+                    HasHeartPar.Stop();
                 }
                 else if (isHearted)
                 {
                     isHearted = false;
-               
+                    HasHeartPar.Stop();
                 }
                 else
                 {
@@ -316,12 +316,12 @@ public class PlayerController : MonoBehaviour
             if (other.CompareTag("Heart"))
             
             {
-            
+            HasHeartPar.Play();
                 isHearted = true;
             }
             if (other.CompareTag("Heartt"))
             {
-               
+                HasHeartPar.Play();
                 isHeartted = true;
             }
             

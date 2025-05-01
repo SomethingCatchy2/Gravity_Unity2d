@@ -265,6 +265,29 @@ public class PlayerController : MonoBehaviour
             ResetPlayerState();
 
         }
+
+        if (other.CompareTag("Ground"))
+        {
+                isGrounded = true;
+                isJump = false;
+                HasGravPar.Play();
+            
+        }
+
+        if (other.CompareTag("jump"))
+        {
+               HasJumpPar.Play();
+                isJump = true;
+                isGrounded = true;
+            
+        }
+        if (other.CompareTag("jumpp"))
+        {
+               HasJumpPar.Play();
+                isJumpp = true;
+                isGrounded = true;
+            
+        }
 if (other.CompareTag("Finish"))
         {
            FireWork1.Play();

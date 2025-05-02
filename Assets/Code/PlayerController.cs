@@ -208,7 +208,8 @@ public class PlayerController : MonoBehaviour
                 isGrounded = true;
                 isJump = false;
                 HasGravPar.Play();
-                
+                isFast = false;
+                isSlow = false;
                 break;
 
             case "Enemy":
@@ -239,12 +240,16 @@ public class PlayerController : MonoBehaviour
                HasJumpPar.Play();
                 isJump = true;
                 isGrounded = true;
+                isFast = false;
+                isSlow = false;
                 break;
 
             case "jumpp":
             HasJumpPar.Play();
                 isJumpp = true;
                 isGrounded = true;
+                isFast = false;
+                isSlow = false;
                 break;
 
             case "bossportal":
@@ -311,6 +316,13 @@ public class PlayerController : MonoBehaviour
        
           
                 }
+
+            if (other.CompareTag("slowgrav"))
+                {
+                Debug.Log("Entered gravity zone!");
+                rb.gravityScale = 0.5f;
+                }
+
         if (other.CompareTag("Heart") || other.CompareTag("Heartt"))
         {
             if (other.CompareTag("Heart"))
@@ -339,6 +351,8 @@ public class PlayerController : MonoBehaviour
                 isGrounded = true;
                 isJump = false;
                 HasGravPar.Play();
+                isFast = false;
+                isSlow = false;
             
         }
 
@@ -347,6 +361,8 @@ public class PlayerController : MonoBehaviour
                HasJumpPar.Play();
                 isJump = true;
                 isGrounded = true;
+                isFast = false;
+                isSlow = false;
             
         }
         if (other.CompareTag("jumpp"))
@@ -354,7 +370,14 @@ public class PlayerController : MonoBehaviour
                HasJumpPar.Play();
                 isJumpp = true;
                 isGrounded = true;
+                isFast = false;
+                isSlow = false;
             
+        }
+        if (other.CompareTag("Fast"))
+        {
+            isFast = true;
+            isSlow = false;
         }
 if (other.CompareTag("Finish"))
         {

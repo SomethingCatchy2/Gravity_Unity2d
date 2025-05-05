@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     public ParticleSystem CheckpointPar;
     public ParticleSystem HasGravPar;
     public ParticleSystem HasHeartPar;
+    public ParticleSystem HasHearttPar;
     public ParticleSystem HasJumpPar;
     public ParticleSystem FireWork1;
     public ParticleSystem DiededPar; 
@@ -42,6 +43,12 @@ public class PlayerController : MonoBehaviour
     // ✅ Checkpoint position
     private static Vector3 lastCheckpointPosition = new Vector3(-146.1f, 201.8f, 0);
     private static bool respawningFromCheckpoint = false;
+
+    // Add these private variables to track previous states
+    private bool wasGrounded = false;
+    private bool wasHearted = false;
+    private bool wasHeartted = false;
+    private bool wasJumping = false;
 
     void Start()
     {
@@ -92,6 +99,67 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        // Handle ground state changes
+        if(isGrounded != wasGrounded) {
+            Debug.Log("Ground state changed to: " + isGrounded);
+            if(isGrounded) {
+                if(HasGravPar != null) {
+                    HasGravPar.Clear();  // Clear existing particles
+                    HasGravPar.Play();   // Start fresh
+                    Debug.Log("Ground particle playing");
+                }
+            } else {
+                if(HasGravPar != null) HasGravPar.Stop();
+            }
+            wasGrounded = isGrounded;
+        }
+
+        // Handle heart state changes
+        if(isHearted != wasHearted) {
+            Debug.Log("Heart state changed to: " + isHearted);
+            if(isHearted) {
+                if(HasHeartPar != null) {
+                    HasHeartPar.Clear();
+                    HasHeartPar.Play();
+                    Debug.Log("Heart particle playing");
+                }
+            } else {
+                if(HasHeartPar != null) HasHeartPar.Stop();
+            }
+            wasHearted = isHearted;
+        }
+
+        // Handle heartt state changes
+        if(isHeartted != wasHeartted) {
+            Debug.Log("Heartt state changed to: " + isHeartted);
+            if(isHeartted) {
+                if(HasHearttPar != null) {
+                    HasHearttPar.Clear();
+                    HasHearttPar.Play();
+                    Debug.Log("Heartt particle playing");
+                }
+            } else {
+                if(HasHearttPar != null) HasHearttPar.Stop();
+            }
+            wasHeartted = isHeartted;
+        }
+
+        // Handle jump state changes
+        bool isJumping = isJump || isJumpp;
+        if(isJumping != wasJumping) {
+            Debug.Log("Jump state changed to: " + isJumping);
+            if(isJumping) {
+                if(HasJumpPar != null) {
+                    HasJumpPar.Clear();
+                    HasJumpPar.Play();
+                    Debug.Log("Jump particle playing");
+                }
+            } else {
+                if(HasJumpPar != null) HasJumpPar.Stop();
+            }
+            wasJumping = isJumping;
+        }
+
         if (isFast)
         {
             xSpeed = 20f;
@@ -111,7 +179,8 @@ public class PlayerController : MonoBehaviour
 
         if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && isGrounded && !isDead)
         {
-            HasGravPar.Stop();
+            
+            JumpPar.Play();
             rb.gravityScale *= -1;
             isGrounded = false;
         }

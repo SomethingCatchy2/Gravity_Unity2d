@@ -28,6 +28,8 @@ TagManager:
   - check
   - More Tor
   - slowgrav
+  - Follower
+  - unlock
   layers:
   - Default
   - TransparentFX

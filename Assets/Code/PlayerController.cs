@@ -241,7 +241,7 @@ public class PlayerController : MonoBehaviour
                 if (isHeartted)
                 {
                     isHeartted = false;
-                    HasHeartPar.Stop();
+                    HasHearttPar.Stop();  // Fixed: Stop the correct particle effect
                 }
                 else if (isHearted)
                 {
@@ -350,7 +350,7 @@ public class PlayerController : MonoBehaviour
             }
             if (other.CompareTag("Heartt"))
             {
-                HasHeartPar.Play();
+                HasHearttPar.Play();  // Fixed: Play the correct particle effect
                 isHeartted = true;
             }
         }

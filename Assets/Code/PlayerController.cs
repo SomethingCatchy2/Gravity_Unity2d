@@ -61,6 +61,9 @@ public class PlayerController : MonoBehaviour
         isSlow = false;
         isIce = false;
 
+        if (isDead)
+        return;
+
         rb = GetComponent<Rigidbody2D>();
         if (rb == null)
             Debug.LogError("Rigidbody2D component is missing!");
@@ -160,14 +163,8 @@ public class PlayerController : MonoBehaviour
             wasJumping = isJumping;
         }
 
-        if (isGrounded)
-        {
-            isFast = false;
-            isSlow = false;
-            xSpeed = 7.5f;
-           
-        }
-        else if (isFast)
+
+        if (isFast)
         {
             xSpeed = 20f;
         }
@@ -211,6 +208,16 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator Die(float delayTime)
     {
+        // Set death flag
+        isDead = true;
+
+        // Freeze physics completely
+        rb.linearVelocity = Vector2.zero;
+        rb.isKinematic = true;
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
+
+
+        // Continue with existing death sequence
         respawningFromCheckpoint = true;
         JeffSprite.enabled = false;
         DiededPar.Play();

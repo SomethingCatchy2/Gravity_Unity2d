@@ -30,6 +30,7 @@ TagManager:
   - slowgrav
   - Follower
   - unlock
+  - bonus
   layers:
   - Default
   - TransparentFX

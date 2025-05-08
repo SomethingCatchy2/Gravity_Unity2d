@@ -1,6 +1,8 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
 
 public class PlayerController : MonoBehaviour
 {
@@ -28,6 +30,9 @@ public class PlayerController : MonoBehaviour
 
     // Sprite
     public SpriteRenderer JeffSprite;
+
+    public Text statusText;
+
 
     // Movement and physics parameters
     public float xSpeed = 7.5f;
@@ -400,6 +405,11 @@ public class PlayerController : MonoBehaviour
             isSlow = false;
         }
 
+        if (other.CompareTag("bonus"))
+        {
+            statusText.text = "flying?";
+        }
+
         if (other.CompareTag("Fast"))
         {
             isFast = true;
@@ -426,74 +436,92 @@ public class PlayerController : MonoBehaviour
         if (portalcount == 1)
         {
             transform.position = new Vector3(-469.329987f, -31.02f, 0);
+            statusText.text = "pilot";
         }
         else if (portalcount == 2)
         {
             transform.position = new Vector3(-0.629999995f, -0.150000006f, 0);
+            statusText.text = "pilot";
         }
         else if (portalcount == 3)
         {
             transform.position = new Vector3(309.6f, -21.4f, 0);
+            statusText.text = "pilot";
         }
         else if (portalcount == 4)
         {
             transform.position = new Vector3(536.13f, -46.86f, 0);
+            statusText.text = "pilot";
         }
         else if (portalcount == 5)
         {
             transform.position = new Vector3(-751.01f, -23.34f, 0);
+            statusText.text = "pilot";
         }
         else if (portalcount == 6)
         {
             transform.position = new Vector3(-351.399994f, -168.899994f, 0);
+            statusText.text = "pilot";
         }
         else if (portalcount == 7)
         {
             transform.position = new Vector3(-793.799988f, -135.300003f, 0);
+            statusText.text = "pilot";
         }
         else if (portalcount == 8)
         {
             transform.position = new Vector3(655.0f, -177.899994f, 0);
+            statusText.text = "pilot";
         }
         else if (portalcount == 9)
         {
             transform.position = new Vector3(294.0f, -172.880005f, 0);
+            statusText.text = "pilot";
         }
         else if (portalcount == 10)
         {
             transform.position = new Vector3(-31.8999996f, -170.300003f, 0);
+            statusText.text = "pilot";
         }
         else if (portalcount == 11)
         {
             transform.position = new Vector3(-677.200012f, -314.100006f, 0);
+            statusText.text = "pilot";
         }
         else if (portalcount == 12)
         {
             transform.position = new Vector3(-377.0f, -295.0f, 0);
+            statusText.text = "pilot";
         }
         else if (portalcount == 13)
         {
             transform.position = new Vector3(-790.5f, -444.100006f, 0);
+            statusText.text = "pilot";
         }
         else if (portalcount == 14)
         {
             transform.position = new Vector3(-376.880005f, -441.880005f, 0);
+            statusText.text = "pilot";
         }
         else if (portalcount == 15)
         {
             transform.position = new Vector3(-61.2000008f, -502.399994f, 0);
+            statusText.text = "pilot";
         }
         else if (portalcount == 16)
         {
             transform.position = new Vector3(278.98999f, -438.890015f, 0);
+            statusText.text = "pilot";
         }
         else if (portalcount == 17)
         {
             transform.position = new Vector3(614.849976f, -464.649994f, 0);
+            statusText.text = "pilot";
         }
         else if (portalcount == 18) // boss level
         {
             transform.position = new Vector3(939.47998f, 19.2399998f, 0);
+            statusText.text = "pilot";
         }
     }
 

@@ -245,19 +245,19 @@ public TMPro.TextMeshProUGUI statusText;
         {
                 statusText.text = "bounce";
         }
-        else if (portalcount == 9)
+        else if (portalcount == 10)
         {
                 statusText.text = "trick";
         }
-        else if (portalcount == 10)
+        else if (portalcount == 11)
         {
                 statusText.text = "white";
         }
-        else if (portalcount == 11)
+        else if (portalcount == 12)
         {
                 statusText.text = "stop";
         }
-        else if (portalcount == 12)
+        else if (portalcount == 13)
         {
                 statusText.text = "british";
         }

@@ -289,7 +289,7 @@ public TMPro.TextMeshProUGUI statusText;
         respawningFromCheckpoint = true;
         JeffSprite.enabled = false;
         DiededPar.Play();
-        yield return new WaitForSeconds(delayTime);
+        yield return new WaitForSeconds(2);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 

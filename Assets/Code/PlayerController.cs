@@ -287,7 +287,7 @@ public TMPro.TextMeshProUGUI statusText;
         }
         else if (portalcount == 20)
         {
-                statusText.text = "no green";
+                statusText.text = "yellow 2";
         }
         else if (portalcount == 21)
         {

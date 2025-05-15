@@ -755,7 +755,7 @@ public TMPro.TextMeshProUGUI statusText;
         }
         else if (portalcount == 37)
         {
-            transform.position = new Vector3(-33.0200005f,-302.160004f,0);
+            transform.position = new Vector3(-370.726685f,-1069.98828f,0);
         }
         else if (portalcount == 38)
         {

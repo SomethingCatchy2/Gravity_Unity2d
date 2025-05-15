@@ -207,7 +207,7 @@ public TMPro.TextMeshProUGUI statusText;
 
         if (flying)
         {
-                statusText.text = "flying";
+                statusText.text = "flying?";
         }
         else if (portalcount == 1)
         {
@@ -260,6 +260,118 @@ public TMPro.TextMeshProUGUI statusText;
         else if (portalcount == 13)
         {
                 statusText.text = "british";
+        }
+        else if (portalcount == 14)
+        {
+                statusText.text = "up and right";
+        }
+        else if (portalcount == 15)
+        {
+                statusText.text = "mortor";
+        }
+        else if (portalcount == 16)
+        {
+                statusText.text = "can you follow instructions?";
+        }
+        else if (portalcount == 17)
+        {
+                statusText.text = "time save";
+        }
+        else if (portalcount == 18)
+        {
+                statusText.text = "not yet...";
+        }
+        else if (portalcount == 19)
+        {
+                statusText.text = "factory";
+        }
+        else if (portalcount == 20)
+        {
+                statusText.text = "no green";
+        }
+        else if (portalcount == 21)
+        {
+                statusText.text = "deadlly elevators";
+        }
+        else if (portalcount == 22)
+        {
+                statusText.text = "pink bounce";
+        }
+        else if (portalcount == 23)
+        {
+                statusText.text = "time save 2";
+        }
+        else if (portalcount == 24)
+        {
+                statusText.text = "chase";
+        }
+        else if (portalcount == 25)
+        {
+                statusText.text = "fast";
+        }
+        else if (portalcount == 26)
+        {
+                statusText.text = "fast ceiling";
+        }
+        else if (portalcount == 27)
+        {
+                statusText.text = "time save 3";
+        }
+        else if (portalcount == 28)
+        {
+                statusText.text = "small";
+        }
+        else if (portalcount == 29)
+        {
+                statusText.text = "BIG";
+        }
+        else if (portalcount == 30)
+        {
+                statusText.text = "some of all";
+        }
+        else if (portalcount == 31)
+        {
+                statusText.text = "jump 2";
+        }
+        else if (portalcount == 32)
+        {
+                statusText.text = "bounce jump";
+        }
+        else if (portalcount == 33)
+        {
+                statusText.text = "wise";
+        }
+        else if (portalcount == 34)
+        {
+                statusText.text = "acrobatics";
+        }
+        else if (portalcount == 35)
+        {
+                statusText.text = "car flip";
+        }
+        else if (portalcount == 36)
+        {
+                statusText.text = "elevators";
+        }
+        else if (portalcount == 37)
+        {
+                statusText.text = "jump mortor";
+        }
+        else if (portalcount == 38)
+        {
+                statusText.text = "stop 2";
+        }
+        else if (portalcount == 39)
+        {
+                statusText.text = "pink";
+        }
+        else if (portalcount == 40)
+        {
+                statusText.text = "up down";
+        }
+        else if (portalcount == 41)
+        {
+                statusText.text = "boss";
         }
 
 
@@ -349,7 +461,7 @@ public TMPro.TextMeshProUGUI statusText;
             case "bosskill":
                 if (killcount == 3)
                 {
-                    transform.position = new Vector3(1137.22f, -85.44f, 0);
+                    transform.position = new Vector3(1115.5f,-32.7999992f,0);
                 }
                 else
                 {
@@ -507,7 +619,7 @@ public TMPro.TextMeshProUGUI statusText;
         }
         else if (portalcount == 3)
         {
-            transform.position = new Vector3(309.6f, -21.4f, 0);
+            transform.position = new Vector3(310.720001f,-22.289999f,0);
         }
         else if (portalcount == 4)
         {
@@ -551,21 +663,113 @@ public TMPro.TextMeshProUGUI statusText;
         }
         else if (portalcount == 14)
         {
-            transform.position = new Vector3(-376.880005f, -441.880005f, 0);
+            transform.position = new Vector3(-33.0200005f,-302.160004f,0);
         }
         else if (portalcount == 15)
         {
-            transform.position = new Vector3(-61.2000008f, -502.399994f, 0);
+            transform.position = new Vector3(270.889984f,-295.559998f,0);
         }
         else if (portalcount == 16)
         {
-            transform.position = new Vector3(278.98999f, -438.890015f, 0);
+            transform.position = new Vector3(562f,-286f,0);
         }
         else if (portalcount == 17)
         {
-            transform.position = new Vector3(614.849976f, -464.649994f, 0);
+            transform.position = new Vector3(-376.880005f,-441.880005f,0);
         }
-        else if (portalcount == 18) // boss level
+        else if (portalcount == 18)
+        {
+            transform.position = new Vector3(-61.2000008f,-502.399994f,0);
+        }
+        else if (portalcount == 19)
+        {
+            transform.position = new Vector3(288f,-464.600006f,0);
+        }
+        else if (portalcount == 20)
+        {
+            transform.position = new Vector3(585.960022f,-458.959991f,0);
+        }
+        else if (portalcount == 21)
+        {
+            transform.position = new Vector3(-776.400024f,-604.200012f,0);
+        }
+        else if (portalcount == 22)
+        {
+            transform.position = new Vector3(-368.149994f,-592.820007f,0);
+        }
+        else if (portalcount == 23)
+        {
+            transform.position = new Vector3(-27.0599995f,-591.354614f,0);
+        }
+        else if (portalcount == 24)
+        {
+            transform.position = new Vector3(277f,-588.5f,0);
+        }
+        else if (portalcount == 25)
+        {
+            transform.position = new Vector3(512.5f,-590.5f,0);
+        }
+        else if (portalcount == 26)
+        {
+            transform.position = new Vector3(-763.900024f,-746.130005f,0);
+        }
+        else if (portalcount == 27)
+        {
+            transform.position = new Vector3(-370.726685f,-1069.98828f,0);
+        }
+        else if (portalcount == 28)
+        {
+            transform.position = new Vector3(-59.1599998f,-742.409973f,0);
+        }
+        else if (portalcount == 29)
+        {
+            transform.position = new Vector3(209.699997f,-798.900024f,0);
+        }
+        else if (portalcount == 30)
+        {
+            transform.position = new Vector3(541.163025f,-772.27063f,0);
+        }
+        else if (portalcount == 31)
+        {
+            transform.position = new Vector3(-802.51001f,-910.080017f,0);
+        }
+        else if (portalcount == 32)
+        {
+            transform.position = new Vector3(-465.299988f,-955.817383f,0);
+        }
+        else if (portalcount == 33)
+        {
+            transform.position = new Vector3(-145.429993f,-838.697388f,0);
+        }
+        else if (portalcount == 34)
+        {
+            transform.position = new Vector3(188.520004f,-904.367432f,0);
+        }
+        else if (portalcount == 35)
+        {
+            transform.position = new Vector3(530.299988f,-863.599976f,0);
+        }
+        else if (portalcount == 36)
+        {
+            transform.position = new Vector3(-793.810059f,-995.122803f,0);
+        }
+        else if (portalcount == 37)
+        {
+            transform.position = new Vector3(-33.0200005f,-302.160004f,0);
+        }
+        else if (portalcount == 38)
+        {
+            transform.position = new Vector3(-78.210022f,-1020.91187f,0);
+        }
+        else if (portalcount == 39)
+        {
+            transform.position = new Vector3(280.429962f,-1047.50818f,0);
+        }
+        else if (portalcount == 40)
+        {
+            transform.position = new Vector3(608.5f,-1035.86804f,0);
+        }
+        else if (portalcount == 41) 
         {
             transform.position = new Vector3(939.47998f, 19.2399998f, 0);
         }

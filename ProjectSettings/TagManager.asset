@@ -31,6 +31,7 @@ TagManager:
   - Follower
   - unlock
   - bonus
+  - SPed Run cout
   layers:
   - Default
   - TransparentFX

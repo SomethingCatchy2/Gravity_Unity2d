@@ -393,7 +393,7 @@ public TMPro.TextMeshProUGUI statusText;
 
         // Freeze physics completely
         rb.linearVelocity = Vector2.zero;
-        rb.isKinematic = true;
+        rb.bodyType = RigidbodyType2D.Kinematic;
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
 
 

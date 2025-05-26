@@ -17129,7 +17129,7 @@ GameObject:
   - component: {fileID: 52369945}
   - component: {fileID: 52369944}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: timer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17142,7 +17142,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 52369942}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -93409,7 +93409,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.46246338, y: -21.053194}
+  m_Offset: {x: -0.46246338, y: -16.785954}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -93419,7 +93419,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 62.228638, y: 55.217663}
+  m_Size: {x: 62.228638, y: 63.752144}
   m_EdgeRadius: 0
 --- !u!1 &419467346
 GameObject:
@@ -153275,7 +153275,7 @@ GameObject:
   - component: {fileID: 656888406}
   - component: {fileID: 656888405}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: names
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -306457,7 +306457,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b93a6709499e0f7c7a0c8fc4f1ef74cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerText: {fileID: 52369944}
+  timerText: {fileID: 0}
 --- !u!1 &1375647480
 GameObject:
   m_ObjectHideFlags: 0

@@ -109,6 +109,7 @@ public TMPro.TextMeshProUGUI statusText;
 
     }
 
+
     void Update()
     {
         // Handle ground state changes
